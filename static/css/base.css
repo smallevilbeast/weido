@@ -1,0 +1,15 @@
+span, body,button,input,select,textarea {
+	font: 12px/1.25 Arial,Helvetica,sans-serif;
+	_font-family: "SimSun";
+}
+
+body,ul,p,h1,h2,h3,h4,dl,dd,form,input,textarea,select { padding:0; margin:0;}
+
+li { list-style:none; }
+img { border:none; }
+a { text-decoration:none; 	color: #0a8cd2; outline: none;}
+a:hover { text-decoration: underline; }
+
+input {  outline:0; resize:none; }
+body { font-size: 9px; color: #4D5154; cursor: default; -webkit-user-select: none;}
+body {background-color: #F5F5F5;}

@@ -1,0 +1,67 @@
+.WB_url, .source { color: #006996; cursor: pointer;}
+
+.timeline_outbox { margin: auto; width: 280px; padding: 0 10px 0 10px;}
+.timeline { width: 260px; height:200px; }
+.split_line {width: 260px; float: left; margin: 10px 0 12px 0; border-top: 1px dashed #d6d6d6;}
+.message {position: relative;}
+.message .profile_image {
+    float: left;
+    width:20px;
+    cursor: pointer;
+    border: 1px solid #fff;
+    -webkit-box-shadow:1px 1px 1px #b2b7bc, -1px -1px 1px #b2b7bc;
+    -moz-box-shadow:1px 1px 1px #b2b7bc, -1px -1px 1px #b2b7bc;
+    box-shadow:1px 1px 1px #b2b7bc, -1px -1px 1px #b2b7bc;
+}
+
+.message .profile_image:hover {
+    border: 1px solid #00aeff;
+}
+
+.message .content {float: right; width: 230px;}
+.content .username {
+    /* float: left; */
+    line-height: 26px;
+    font-size: 16px;
+    dislpay: block;
+    color: #49494a;
+    cursor: pointer;
+}
+.content .text { display: block; margin-top: 5px; color: #242525; }
+.content .thumbnail {margin-top: 5px; cursor: pointer; display: block; }
+
+.message .info { margin-top: 10px; }
+.info .created_at { color: #7b7b7b;}
+
+.content .retweeted {
+	border-radius: 2px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;	
+	border: 1px solid #d6d6d6;
+	/* height: 30px; */
+	float: right;
+	margin: 10px 0 10px 0;
+	background-color: #fafafa;
+	width: 220px;
+	padding: 5px;
+}
+
+.retweeted .ret_name {
+    color: #006996;
+    cursor: pointer;
+}
+
+.retweeted .ret_text {
+	/* display: block; */
+}
+
+.retweeted .prompt {margin-top: 5px;}
+
+.reposts_prompt, .comments_prompt {
+	color: #006996;
+	cursor: pointer;
+}
+
+.reposts_count {
+	margin-right: 10px;
+}
