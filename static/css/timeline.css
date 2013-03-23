@@ -1,5 +1,7 @@
 .WB_url, .source { color: #006996; cursor: pointer;}
 
+.call_user { color: #0075a8; color: pointer;}
+
 .timeline_outbox { margin: auto; width: 280px; padding: 0 10px 0 10px;}
 .timeline { width: 260px; height:200px; }
 .split_line {width: 260px; float: left; margin: 10px 0 12px 0; border-top: 1px dashed #d6d6d6;}
@@ -62,6 +64,8 @@
 	cursor: pointer;
 }
 
-.reposts_count {
+.reposts_count, .comments_count{
 	margin-right: 10px;
+    color: #49494a;
 }
+
