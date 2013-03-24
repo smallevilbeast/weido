@@ -20,6 +20,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
+import time
+from datetime import datetime
+import dateutil
+from dateutil import parser
+
+
 try:
     import simplejson as json
 except ImportError:    
@@ -35,3 +42,24 @@ def parser_json(raw):
         except:    
             data = {}
     return data    
+
+def parse_datetime(strtime):
+    dt = parser.parse(strtime)
+    res = dt.astimezone(dateutil.tz.tzlocal())
+    return datetime(*res.timetuple()[0:6])
+    # try:
+    #     return datetime(*datetime.strptime(strtime, '%a %b %d %H:%M:%S +0800 %Y')[0:6])
+    # except:
+    #     return datetime.now()
+
+def parse_sina_datetime(strtime):
+    sina_datetime  = parse_datetime(str(strtime))
+    now = datetime.now()
+    timedelta = now - sina_datetime    
+    if timedelta.days > 0:
+        return sina_datetime.strftime("%m月%d日 %H:%M")
+    total_minutes = abs((now - sina_datetime).total_seconds()) / 60
+    if total_minutes >= 60:
+        return sina_datetime.strftime("今天 %H:%M")
+    if total_minutes < 1: total_minutes = 1
+    return "%d分钟前" % int(round(total_minutes))

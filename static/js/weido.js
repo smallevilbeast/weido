@@ -53,22 +53,29 @@ String.prototype.format = Overload({
     }
 });
 
+
 function hello(data){
 	var base_div = '<div class="message"><div class="split_line"></div><img class="profile_image" width=20 height=20 src={profile_image} alt="" /><div class="content"><span class="username">{name}</span><span class="text">{text}</span>{thumbnail}{retweeted}<div class="info"><span class="created_at">{created_at} </span><span class="source">{source}</span></div></div></div>'
 	var thumbnail_div = '<img class="thumbnail" src={thumbnail_pic} />'
 	var retweeted_div = '<div class="retweeted"><span class="ret_name">@{name}: </span><span class="ret_text">{text}</span><div class="prompt"><span class="reposts_prompt">转发</span><span class="reposts_count">({reposts_count})</span><span class="comments_prompt">评论</span><span class="comments_count">({comments_count})</span></div>{thumbnail}</div>'
+	var delete_retweeted_div = '<div class="retweeted"><span class="ret_text">{text}</span></div>'
 	
 	for (var i=0; i<data.length; i++){
 		
 		var message = data[i];
 		var base_thumbnail_div = null;
 		var retweeted = null;
+		var retweeted_thumbnail_div = null;		
 		
 		function replace_call(text){
 
 			// console.log(text);
-			var new_text = text.replace(/(#.*?#)/g, '<span class="call_user">$1</span>');
-			return new_text.replace(/(@\S+?)[\)|\s|:]/g, '<span class="call_user">$1</span>');			
+			
+			var topics_text = text.replace(/(#.*?#)/g, '<span class="topics">$1</span>');
+			var url_text = topics_text.replace(/(http:\/\/t\.cn\/[a-zA-Z0-9-]+)/g, '<a href=$1 class="lower_url">$1</a>');
+			var call_text = url_text.replace(/(@\S+?)[\)|\s|:]|(@\S+)/g, '<span class="call_user">$1 </span>');			
+			return call_text;
+
 		}
 		
 		if (message.hasOwnProperty("thumbnail_pic")){
@@ -77,18 +84,18 @@ function hello(data){
 		
 		if (message.hasOwnProperty("retweeted_status")){
 			if (message.retweeted_status.hasOwnProperty("thumbnail_pic")){
-				var retweeted_thumbnail_div = thumbnail_div.format({"thumbnail_pic" : message.retweeted_status.thumbnail_pic});
-				retweeted = retweeted_div.format({"name" : message.retweeted_status.user.name,
+				retweeted_thumbnail_div = thumbnail_div.format({"thumbnail_pic" : message.retweeted_status.thumbnail_pic});
+			}
+			if (message.retweeted_status.user instanceof Object){
+				var name = message.retweeted_status.user.name; // this message is delete!
+				retweeted = retweeted_div.format({"name" : name,
 												  "text" : replace_call(message.retweeted_status.text),
 												  "reposts_count": message.retweeted_status.reposts_count,
 												  "comments_count": message.retweeted_status.comments_count,
 												  "thumbnail" : retweeted_thumbnail_div});
-			}else{
-				retweeted = retweeted_div.format({"name" : message.retweeted_status.user.name,
-												  "text" : replace_call(message.retweeted_status.text),
-												  "reposts_count": message.retweeted_status.reposts_count,
-												  "comments_count": message.retweeted_status.comments_count,
-												 });
+				
+			} else {
+				retweeted = delete_retweeted_div.format({"text" : replace_call(message.retweeted_status.text)});
 			}
 		}
 		
@@ -96,7 +103,7 @@ function hello(data){
 			"profile_image": message.user.profile_image_url,
 			 "name" : message.user.name, 
 			 "text": replace_call(message.text),
-			 "created_at": "今天 6:20",
+			 "created_at": message.created_at,
 			 "source" : message.source,
 			 "thumbnail" : base_thumbnail_div,
 			 "retweeted" : retweeted}).replace(/null/g, "").replace(/undefined/g, "");

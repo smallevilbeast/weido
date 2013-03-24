@@ -27,6 +27,7 @@ import webbrowser
 
 import javascriptcore as jscore
 from sina import Sina
+from utils import parse_sina_datetime
 
 
 class PopupWindow(gtk.Window):
@@ -74,6 +75,8 @@ class PopupWindow(gtk.Window):
         timeline = self.sina.GET_statuses__home_timeline(count=self.count, page=1)
         statuses = timeline.get("statuses", [])
         if len(statuses) > 0:
+            for message in statuses:
+                message["created_at"] = parse_sina_datetime((message.get("created_at")))
             self.js_context.hello(statuses)            
             self.count += 20
         

@@ -1,6 +1,7 @@
 .WB_url, .source { color: #006996; cursor: pointer;}
 
-.call_user { color: #0075a8; color: pointer;}
+.call_user, .topics { color: #0075a8; cursor: pointer;}
+.lower_url { color: #0075a8; word-wrap: break-word; word-break: normal; }
 
 .timeline_outbox { margin: auto; width: 280px; padding: 0 10px 0 10px;}
 .timeline { width: 260px; height:200px; }
@@ -54,7 +55,8 @@
 }
 
 .retweeted .ret_text {
-	/* display: block; */
+	/* display: inline; */
+	/* float: left; */
 }
 
 .retweeted .prompt {margin-top: 5px;}
