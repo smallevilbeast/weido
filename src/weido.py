@@ -20,6 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import gtk
 import cairo
 import webkit
@@ -27,9 +28,10 @@ import webbrowser
 
 import javascriptcore as jscore
 from sina import Sina
-from utils import parse_sina_datetime
+from utils import parse_sina_datetime, get_parent_dir
 from constant import MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT
 
+static_dir = os.path.join(get_parent_dir(__file__, 2), "static", "html")
 
 class PopupWindow(gtk.Window):
     
@@ -45,7 +47,9 @@ class PopupWindow(gtk.Window):
         
         self.webview = webkit.WebView()
         self.webview.set_transparent(True)
-        self.webview.open("file:///home/evilbeast/project/web/weido/static/html/timeline.html")
+        
+        print "file://%s" % os.path.join(static_dir, "timeline.html")
+        self.webview.open("file://%s" % os.path.join(static_dir, "timeline.html"))
         self.webview.connect('new-window-policy-decision-requested', self.navigation_request_cb)
         self.webview.connect('navigation-policy-decision-requested', self.navigation_request_cb)
         self.webview.connect("load-finished", lambda w, e: self.on_button_clicked(w))

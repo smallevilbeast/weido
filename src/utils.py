@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
+import os
 import time
 from datetime import datetime
 import dateutil
@@ -63,3 +63,20 @@ def parse_sina_datetime(strtime):
         return sina_datetime.strftime("今天 %H:%M")
     if total_minutes < 1: total_minutes = 1
     return "%d分钟前" % int(round(total_minutes))
+
+
+def get_parent_dir(filepath, level=1):
+    '''
+    Get parent directory with given return level.
+    
+    @param filepath: Filepath.
+    @param level: Return level, default is 1
+    @return: Return parent directory with given return level. 
+    '''
+    parent_dir = os.path.realpath(filepath)
+    
+    while(level > 0):
+        parent_dir = os.path.dirname(parent_dir)
+        level -= 1
+    
+    return parent_dir
