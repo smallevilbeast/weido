@@ -1,11 +1,10 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2011 ~ 2013 Deepin, Inc.
-#               2011 ~ 2013 Hou ShaoHui
-# 
-# Author:     Hou ShaoHui <houshao55@gmail.com>
-# Maintainer: Hou ShaoHui <houshao55@gmail.com>
+# Copyright (C) 2012 smallevilbeast
+#
+# Author:     smallevilbeast <houshao55@gmail.com>
+# Maintainer: smallevilbeast <houshao55@gmail.com>
 # 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,8 +18,3 @@
 # 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-from sina import Sina
-
-
-

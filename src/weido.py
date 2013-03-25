@@ -28,6 +28,7 @@ import webbrowser
 import javascriptcore as jscore
 from sina import Sina
 from utils import parse_sina_datetime
+from constant import MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT
 
 
 class PopupWindow(gtk.Window):
@@ -36,7 +37,7 @@ class PopupWindow(gtk.Window):
         gtk.Window.__init__(self)
         self.set_position(gtk.WIN_POS_CENTER)
         self.set_colormap(gtk.gdk.Screen().get_rgba_colormap())
-        self.set_size_request(300, 580)
+        self.set_size_request(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT)
         self.connect("destroy", gtk.main_quit)
         
         # self.connect("expose-event", self.on_expose_event)

@@ -3,9 +3,9 @@
 .call_user, .topics { color: #0075a8; cursor: pointer;}
 .lower_url { color: #0075a8; word-wrap: break-word; word-break: normal; }
 
-.timeline_outbox { margin: auto; width: 280px; padding: 0 10px 0 10px;}
-.timeline { width: 260px; height:200px; }
-.split_line {width: 260px; float: left; margin: 10px 0 12px 0; border-top: 1px dashed #d6d6d6;}
+.timeline_outbox { margin: auto; width: 290px; padding: 0 5px 0 5px;}
+.timeline { width: 280px; height:200px; }
+.split_line {width: 280px; float: left; margin: 10px 0 12px 0; border-top: 1px dashed #d6d6d6;}
 .message {position: relative;}
 .message .profile_image {
     float: left;
@@ -21,9 +21,8 @@
     border: 1px solid #00aeff;
 }
 
-.message .content {float: right; width: 230px;}
+.message .content {float: right; width: 250px;}
 .content .username {
-    /* float: left; */
     line-height: 26px;
     font-size: 16px;
     dislpay: block;
@@ -33,8 +32,37 @@
 .content .text { display: block; margin-top: 5px; color: #242525; }
 .content .thumbnail {margin-top: 5px; cursor: pointer; display: block; }
 
-.message .info { margin-top: 10px; }
+.message .info { margin-top: 10px; float:left;}
 .info .created_at { color: #7b7b7b;}
+
+.message .action {
+	float: right;
+	margin-top : 10px;
+}
+
+.message .action div { display: inline-block;  cursor: pointer; padding-right: 5px;}
+
+.action .line_split { color: #d6d6d6;}
+.action span { font-size: 10px; color: #7b7b7b; text-align: left;}
+
+.action .repost {
+	background: url(../img/reply_normal.png) no-repeat;
+	width: 15px;
+	height: 8px;
+}
+.action .repost:hover {
+	background: url(../img/reply_hover.png) no-repeat;
+}
+
+.action .comment {
+	background: url(../img/comment_normal.png) no-repeat;
+	width: 15px;
+	height: 8px;
+}
+.action .comment:hover {
+	background: url(../img/comment_hover.png) no-repeat;
+}
+
 
 .content .retweeted {
 	border-radius: 2px;
@@ -45,7 +73,7 @@
 	float: right;
 	margin: 10px 0 10px 0;
 	background-color: #fafafa;
-	width: 220px;
+	width: 240px;
 	padding: 5px;
 }
 

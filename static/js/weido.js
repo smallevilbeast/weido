@@ -55,7 +55,7 @@ String.prototype.format = Overload({
 
 
 function hello(data){
-	var base_div = '<div class="message"><div class="split_line"></div><img class="profile_image" width=20 height=20 src={profile_image} alt="" /><div class="content"><span class="username">{name}</span><span class="text">{text}</span>{thumbnail}{retweeted}<div class="info"><span class="created_at">{created_at} </span><span class="source">{source}</span></div></div></div>'
+	var base_div = '<div class="message"><div class="split_line"></div><img class="profile_image" width=20 height=20 src={profile_image} alt="" /><div class="content"><span class="username">{name}</span><span class="text">{text}</span>{thumbnail}{retweeted}<div class="info"><span class="created_at">{created_at} </span><span class="source">{source}</span></div><div class="action"><span class="line_split"> | </span><div class="repost"></div><span class="reposts_count">{reposts_count}</span><div class="comment"></div><span class="comments_count">{comments_count}</span></div></div></div>'
 	var thumbnail_div = '<img class="thumbnail" src={thumbnail_pic} />'
 	var retweeted_div = '<div class="retweeted"><span class="ret_name">@{name}: </span><span class="ret_text">{text}</span><div class="prompt"><span class="reposts_prompt">转发</span><span class="reposts_count">({reposts_count})</span><span class="comments_prompt">评论</span><span class="comments_count">({comments_count})</span></div>{thumbnail}</div>'
 	var delete_retweeted_div = '<div class="retweeted"><span class="ret_text">{text}</span></div>'
@@ -101,16 +101,17 @@ function hello(data){
 		
 		message_div = base_div.format({
 			"profile_image": message.user.profile_image_url,
-			 "name" : message.user.name, 
-			 "text": replace_call(message.text),
-			 "created_at": message.created_at,
-			 "source" : message.source,
-			 "thumbnail" : base_thumbnail_div,
-			 "retweeted" : retweeted}).replace(/null/g, "").replace(/undefined/g, "");
+			"name" : message.user.name, 
+			"text": replace_call(message.text),
+			"created_at": message.created_at,
+			"source" : message.source,
+			"thumbnail" : base_thumbnail_div,
+			"retweeted" : retweeted,
+			"reposts_count" : !message.reposts_count?"":message.reposts_count,
+			"comments_count" : !message.comments_count?"":message.comments_count,
+		}).replace(/null/g, "").replace(/undefined/g, "");
 		
-		// alert(message_div);
 		$(".timeline").append(message_div);
-		// $("timeline").append('<div>dfdf</div>');
 		}
 }
 
